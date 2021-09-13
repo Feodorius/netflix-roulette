@@ -8,8 +8,8 @@ const config = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: '[name].bundle.js',
-        chunkFilename: '[name].bundle.js'
+        filename: '[name].[contenthash:8].bundle.js',
+        chunkFilename: '[name].[contenthash:8].bundle.js'
     },
     resolve: {
         modules: [path.resolve(__dirname, './src'), 'node_modules'],
@@ -52,6 +52,6 @@ const config = {
 
 module.exports = (env) => {
     config.devtool = env.dev ? 'inline-source-map' : 'source-map';
-    
+
     return config;
 };
