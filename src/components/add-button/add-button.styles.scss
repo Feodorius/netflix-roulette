@@ -1,0 +1,26 @@
+@import "../../utils/variables.scss";
+
+.add-button {
+    position: absolute;
+    top: 20px;
+    right: 56px;
+    cursor: pointer;
+
+    width: 177px;
+    height: 46px;
+    background: rgba(96, 96, 96, 0.68);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+        color: $base-red;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    &:hover {
+        background: rgba(96, 96, 96, 0.8);
+    }
+}

@@ -1,0 +1,20 @@
+@import './utils/variables.scss';
+
+body {
+    background-color: $base-gray;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+}
+
+code {
+    font-family: source-code-pro, "Montserrat", monospace;
+}
+
+* {
+    box-sizing: border-box;
+}
