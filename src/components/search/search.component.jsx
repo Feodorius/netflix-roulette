@@ -1,12 +1,22 @@
 import React from "react";
 import "./search.styles.scss";
 
+import CustomButton from "../custom-button/custom-button.component";
+import TextField from '@material-ui/core/TextField';
+
+
 const Search = () => (
     <div className="search">
-        <input type="text" className="search-field" placeholder="What do you want to watch?"/>
-        <div className="search-button">
-            <span className="search-button-text">SEARCH</span>
-        </div>
+        <TextField
+            className="search-field"
+            color="primary"
+            placeholder="What do you want to watch?" />
+        <CustomButton
+            variant="contained"
+            width="233px"
+            handleClick={() => { }}>
+            SEARCH
+        </CustomButton>
     </div>
 );
 
