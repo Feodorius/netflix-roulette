@@ -3,10 +3,19 @@
 .body-container {
     background-color: $base-black;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    .movies-container {
-        width: 100%;      
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;       
+    .sort-filter-toolbar {
+        width: 90%;
+    }
+
+    .break-line {
+        position: relative;
+        bottom: 2px;
+        height: 2px;       
+        background-color: $base-dark-gray;
+        border-bottom: 1px solid #080707;        
     }
 }
