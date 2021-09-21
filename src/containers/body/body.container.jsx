@@ -3,14 +3,18 @@ import "./body.styles.scss";
 
 import FilterBar from "../../components/filter-bar/filter-bar.component";
 import Movies from "../movies/movies.container";
+import SortBar from "../../components/sort-bar/sort-bar.component";
+
+import jsonData from "../../../public/mockData";
 
 const Body = () => (
     <div className="body-container">
         <div className="sort-filter-toolbar">
             <FilterBar />
-            <div className="break-line" />
+            <SortBar />
         </div>
-        <Movies />
+        <div className="break-line" />
+        <Movies movies={jsonData} />
 
     </div>
 );

@@ -9,12 +9,15 @@
 
     .sort-filter-toolbar {
         width: 90%;
+        display: flex;
+        justify-content: space-between;
     }
 
     .break-line {
         position: relative;
         bottom: 2px;
         height: 2px;       
+        width: 90%;
         background-color: $base-dark-gray;
         border-bottom: 1px solid #080707;        
     }

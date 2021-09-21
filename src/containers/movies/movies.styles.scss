@@ -1,3 +1,19 @@
+@import "../../utils/variables.scss";
+
+.total-movies {
+    width: 90%;
+    margin-top: 24px;
+    color: $base-white;
+    font-size: 20px;
+    line-height: 24px;
+    font-style: normal;
+    font-weight: 400;
+
+    .total-value {
+        font-weight: 600;
+    }
+}
+
 .movies-container {
     width: 90%;
     display: grid;

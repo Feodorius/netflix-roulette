@@ -1,5 +1,5 @@
 import React from "react";
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 import { makeStyles } from "@material-ui/styles";
 
 
@@ -11,7 +11,7 @@ const CustomButton = ({ children, ...otherProps }) => {
     const styles = makeStyles({
         [variant]: {
             width: width || "180px",
-            height: height || "57px"            
+            height: height || "57px"
         }
     })();
 

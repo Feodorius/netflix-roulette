@@ -2,7 +2,7 @@ import React from "react";
 import "./add-button.styles.scss";
 import { makeStyles } from "@material-ui/styles";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 
 
 const muiTheme = createTheme({
@@ -18,7 +18,7 @@ const AddButton = () => {
         contained: {
             width: "180px",
             height: "46px",
-            
+
         }
     })();
 

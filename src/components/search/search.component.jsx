@@ -2,7 +2,7 @@ import React from "react";
 import "./search.styles.scss";
 
 import CustomButton from "../custom-button/custom-button.component";
-import TextField from '@material-ui/core/TextField';
+import { TextField } from '@material-ui/core';
 
 
 const Search = () => (
