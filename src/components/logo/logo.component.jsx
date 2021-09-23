@@ -1,5 +1,6 @@
 import React from "react";
 import "./logo.styles.scss";
+import PropTypes from "prop-types";
 
 
 const Logo = ({ isHeaderLogo }) => (
@@ -8,5 +9,9 @@ const Logo = ({ isHeaderLogo }) => (
         <span className="regular">roulette</span>
     </div>
 );
+
+Logo.propTypes = {
+    isHeaderLogo: PropTypes.bool
+};
 
 export default Logo;

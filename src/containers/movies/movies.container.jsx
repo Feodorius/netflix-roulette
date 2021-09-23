@@ -1,5 +1,6 @@
 import React from "react";
 import "./movies.styles.scss";
+import PropTypes from "prop-types";
 
 import MovieItem from "../../components/movie-item/movie-item.component";
 
@@ -16,6 +17,10 @@ const Movies = ({ movies }) => (
         </div>
     </>
 );
+
+Movies.propTypes = {
+    movies: PropTypes.array
+};
 
 
 export default Movies;

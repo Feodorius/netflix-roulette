@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from '@material-ui/core';
 import { makeStyles } from "@material-ui/styles";
+import PropTypes from "prop-types";
 
 
 
@@ -9,10 +10,7 @@ const CustomButton = ({ children, ...otherProps }) => {
     const { variant, handleClick, width, height } = { ...otherProps };
 
     const styles = makeStyles({
-        [variant]: {
-            width: width || "180px",
-            height: height || "57px"
-        }
+        [variant]: { width, height }
     })();
 
     return (
@@ -26,5 +24,16 @@ const CustomButton = ({ children, ...otherProps }) => {
         </Button>
     )
 };
+
+CustomButton.propTypes = {
+    variant: PropTypes.string,
+    handleClick: PropTypes.func,
+    width: PropTypes.string,
+    height: PropTypes.string,
+    children: PropTypes.string
+
+};
+CustomButton.defaultProps = { width: "180px", height: "57px" };
+
 
 export default CustomButton;
