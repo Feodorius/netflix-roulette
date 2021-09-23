@@ -4,6 +4,7 @@ import "./body.styles.scss";
 import FilterBar from "../../components/filter-bar/filter-bar.component";
 import Movies from "../movies/movies.container";
 import SortBar from "../../components/sort-bar/sort-bar.component";
+import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 
 import jsonData from "../../../public/mockData";
 
@@ -14,7 +15,9 @@ const Body = () => (
             <SortBar />
         </div>
         <div className="break-line" />
-        <Movies movies={jsonData} />
+        <ErrorBoundary>
+            <Movies movies={jsonData} />
+        </ErrorBoundary>
 
     </div>
 );

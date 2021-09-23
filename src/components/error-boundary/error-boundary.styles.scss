@@ -1,0 +1,14 @@
+@import "../../utils/variables.scss";
+
+.error-container {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .error-text {
+        font-weight: 500;
+        color: $base-white;
+        opacity: 0.7;
+    }
+}
