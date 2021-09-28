@@ -39,7 +39,7 @@ const config = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: './src/index.html' }),
+        new HtmlWebpackPlugin({ template: './public/index.html' }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash:8].css',
             chunkFilename: '[name].[contenthash:8].css'

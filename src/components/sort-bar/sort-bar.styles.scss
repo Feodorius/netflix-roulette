@@ -1,0 +1,35 @@
+@import "../../utils/variables.scss";
+
+div.sort-bar-container {
+    height: inherit;
+    display: flex;
+    align-items: center;
+
+    .sort-bar-label {
+        font-size: 16px;
+        line-height: 20px;
+        mix-blend-mode: normal;
+        opacity: 0.6;
+        color: $base-white;
+        margin-right: 20px;
+        position: relative;
+        bottom: 2px;
+    }
+
+    div.Mui-focused {
+        background-color: transparent !important;
+    }
+
+    div.sort-bar {
+        line-height: 20px;
+        letter-spacing: 0.888889px;
+        text-transform: uppercase;
+
+        color: $base-white;
+    }
+
+    svg {
+        color: $base-red;
+        top: 0;
+    }
+}
