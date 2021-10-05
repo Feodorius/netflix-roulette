@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 const SortBar = () => {
     const [sortValue, setSortParameter] = React.useState('release_date');
 
-    const handleChange = (event) => {
+    const sortByParameter = (event) => {
         setSortParameter(event.target.value);
     };
 
@@ -21,12 +21,12 @@ const SortBar = () => {
         <div className="sort-bar-container">
             <span className="sort-bar-label">SORT BY</span>
             <ThemeProvider theme={darkTheme}>
-                <Select                  
+                <Select
                     className="sort-bar"
                     value={sortValue}
                     disableUnderline
                     variant="standard"
-                    onChange={handleChange}
+                    onChange={sortByParameter}
                     displayEmpty>
                     <MenuItem value="release_date">Release Date</MenuItem>
                     <MenuItem value="vote_average">Rating</MenuItem>

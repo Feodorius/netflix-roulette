@@ -33,7 +33,7 @@ CustomButton.propTypes = {
     children: PropTypes.string
 
 };
-CustomButton.defaultProps = { width: "180px", height: "57px" };
+CustomButton.defaultProps = { width: "180px", height: "56px" };
 
 
 export default CustomButton;

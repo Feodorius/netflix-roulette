@@ -17,7 +17,7 @@ const AddButton = () => {
     const styles = makeStyles({
         contained: {
             width: "180px",
-            height: "46px",
+            height: "48px",
 
         }
     })();

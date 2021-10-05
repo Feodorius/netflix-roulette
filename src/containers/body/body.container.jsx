@@ -9,17 +9,16 @@ import ErrorBoundary from "../../components/error-boundary/error-boundary.compon
 import jsonData from "../../../public/mockData";
 
 const Body = () => (
-    <div className="body-container">
-        <div className="sort-filter-toolbar">
-            <FilterBar />
-            <SortBar />
-        </div>
-        <div className="break-line" />
-        <ErrorBoundary>
+    <ErrorBoundary>
+        <div className="body-container">
+            <div className="sort-filter-toolbar">
+                <FilterBar />
+                <SortBar />
+            </div>
+            <div className="break-line" />
             <Movies movies={jsonData} />
-        </ErrorBoundary>
-
-    </div>
+        </div>
+    </ErrorBoundary>
 );
 
 export default Body;
