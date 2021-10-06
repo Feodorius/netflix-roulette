@@ -13,40 +13,25 @@ const options = [
 ];
 
 export default function MenuButton({ movieData }) {
-    const [opened, setOpened] = React.useState(false);
-
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const openMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-        setOpened(true);
-    };
-    const closeMenu = () => {
-        setAnchorEl(null);        
-    };
+
+    const openMenu = (event) => setAnchorEl(event.currentTarget);
+    const closeMenu = () => setAnchorEl(null);
 
 
     const [isOpenedDeleteDialog, setOpenDeleteDialog] = React.useState(false);
-    const closeDeleteDialog = () => {
-        setOpenDeleteDialog(false);
-    };
-    const openDeleteDialog = () => {
-        setOpenDeleteDialog(true);
-    };
-
 
     const selectMenuItem = (event) => {
         if (event.currentTarget.textContent === 'Delete') {
-            openDeleteDialog();
+            setOpenDeleteDialog(true);
         }
         closeMenu();
     };
 
-    console.log("render");
-
     return (
         <div className="menu-icon">
-            {opened && <DeleteDialog isOpened={isOpenedDeleteDialog} close={closeDeleteDialog} />}
+            {isOpenedDeleteDialog && <DeleteDialog isOpened={isOpenedDeleteDialog} close={() => setOpenDeleteDialog(false)} />}
             <IconButton
                 aria-label="more"
                 id="long-button"
@@ -58,22 +43,13 @@ export default function MenuButton({ movieData }) {
                 <MoreVert />
             </IconButton>
             <Menu
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                 id="long-menu"
-                MenuListProps={{
-                    'aria-labelledby': 'long-button',
-                }}
+                MenuListProps={{ 'aria-labelledby': 'long-button' }}
                 anchorEl={anchorEl}
                 open={open}
-                onClose={closeMenu}
-            >
+                onClose={closeMenu}>
                 {options.map((option) => (
                     <MenuItem key={option} onClick={selectMenuItem}>
                         {option}
