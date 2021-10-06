@@ -5,3 +5,4 @@ export const filterGenres = [
     { name: "Horror" },
     { name: "Crime" }
 ];
+export const genres = ["Crime", "Documentary", "Horror", "Comedy"];

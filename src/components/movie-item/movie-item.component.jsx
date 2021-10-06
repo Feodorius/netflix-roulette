@@ -8,11 +8,11 @@ import MenuButton from "../menu-button/menu-button.component";
 
 const MovieItem = ({ movieData }) => {
     const { poster_path, title, release_date, genres } = movieData;
-    const [rendered, setRendered] = React.useState(false);
+    const [isMenuButtonRendered, setMenuButtonRendered] = React.useState(false);
 
     return (
-        < div className="movie-wrapper" onMouseOver={() => setRendered(true)}>
-            {rendered && <MenuButton movieData={movieData} />}
+        < div className="movie-wrapper" onMouseOver={() => setMenuButtonRendered(true)}>
+            {isMenuButtonRendered && <MenuButton movieData={movieData} />}
             <div className="image-container">
                 <img className="movie-image" src={poster_path} alt={title} />
             </div>

@@ -255,4 +255,5 @@ const jsonData = [
     }
 ]
 
-export default jsonData;
+const getMovieData = () => new Promise(resolve => resolve(jsonData));
+export default getMovieData;

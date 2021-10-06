@@ -4,15 +4,14 @@ import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import MoreVert from '@material-ui/icons/MoreVert';
 
 import DeleteDialog from "../delete-dialog/delete-dialog.component";
-
-
+import AddEditDialog from "../add-edit-dialog/add-edit-dialog.component";
 
 const options = [
     'Edit',
     'Delete'
 ];
 
-export default function MenuButton({ movieData }) {
+const MenuButton = ({ movieData }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -21,10 +20,14 @@ export default function MenuButton({ movieData }) {
 
 
     const [isOpenedDeleteDialog, setOpenDeleteDialog] = React.useState(false);
+    const [isOpenedEditDialog, setOpenEditDialog] = React.useState(false);
 
     const selectMenuItem = (event) => {
         if (event.currentTarget.textContent === 'Delete') {
             setOpenDeleteDialog(true);
+        }
+        if (event.currentTarget.textContent === 'Edit') {
+            setOpenEditDialog(true);
         }
         closeMenu();
     };
@@ -32,6 +35,7 @@ export default function MenuButton({ movieData }) {
     return (
         <div className="menu-icon">
             {isOpenedDeleteDialog && <DeleteDialog isOpened={isOpenedDeleteDialog} close={() => setOpenDeleteDialog(false)} />}
+            {isOpenedEditDialog && <AddEditDialog isOpened={isOpenedEditDialog} close={() => setOpenEditDialog(false)} type="Edit" movieData={movieData} />}
             <IconButton
                 aria-label="more"
                 id="long-button"
@@ -58,4 +62,6 @@ export default function MenuButton({ movieData }) {
             </Menu>
         </div>
     );
-}
+};
+
+export default MenuButton;
