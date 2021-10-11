@@ -1,0 +1,109 @@
+@import "../../utils/variables.scss";
+
+.details-container {
+    height: 600px;
+    background-color: $base-black;
+    margin-bottom: 10px;
+    position: relative;
+    padding: 90px 60px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        position: absolute;
+        left: 60px;
+        top: 20px;
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 60px;
+        top: 20px;
+        cursor: pointer;
+        transform: scaleX(-1);
+    }
+
+    .movie-poster {
+        width: 324px;
+        height: 486px;
+    }
+
+    .movie-info {
+        height: 486px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        width: 700px;
+
+        .first-line-info {
+            display: flex;
+            flex-wrap: wrap;
+
+            .movie-title {
+                margin: 0 25px 0 0;
+                font-weight: 300;
+                font-size: 40px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: $base-white;
+            }
+
+            .movie-genres {
+                width: 100%;
+                margin: 0;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                color: $base-white;
+                opacity: 0.5;
+            }
+
+            .rating-circle {
+                position: relative;
+                bottom: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                border: 1px solid $base-white;
+
+                &-value {
+                    font-weight: 300;
+                    font-size: 20px;
+                    line-height: 24px;
+                    text-transform: uppercase;
+                    color: $base-white;
+                }
+            }
+        }
+
+        .second-line-info {
+            margin: 30px 0;
+            display: flex;
+            color: $base-red;
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 29px;
+
+            .movie-year {
+                margin-right: 50px;
+            }
+        }
+
+        .movie-description {
+            font-weight: 300;
+            font-size: 20px;
+            line-height: 24px;
+            color: $base-white;
+            opacity: 0.5;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 13;
+            -webkit-box-orient: vertical;
+        }
+    }
+}

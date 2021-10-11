@@ -6,16 +6,7 @@ import Movies from "../movies/movies.container";
 import SortBar from "../../components/sort-bar/sort-bar.component";
 import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 
-import getMovieData from "../../../public/mockData";
-
-const Body = () => {
-    const [movies, setMovies] = React.useState([]);
-
-    React.useEffect(() => {
-        getMovieData().
-            then(data => setMovies(data));
-    });
-
+const Body = ({ movies }) => {
     return (
         <ErrorBoundary>
             <div className="body-container">

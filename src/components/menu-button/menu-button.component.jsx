@@ -15,7 +15,9 @@ const MenuButton = ({ movieData }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
-    const openMenu = (event) => setAnchorEl(event.currentTarget);
+    const openMenu = (event) => {        
+        setAnchorEl(event.currentTarget)
+    };
     const closeMenu = () => setAnchorEl(null);
 
 
