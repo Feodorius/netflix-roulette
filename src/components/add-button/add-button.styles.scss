@@ -1,11 +1,11 @@
 @import "../../utils/variables.scss";
 
-.add-button {
-    position: absolute !important;
+button.add-button {
+    position: absolute;
     top: 20px;
     right: 56px;
-    box-shadow: none !important;
-    color: $base-red !important;
-    font-weight: 600 !important; 
-    font-size: 20px !important;
+    box-shadow: none;
+    color: $base-red;
+    font-weight: 600;
+    font-size: 20px;
 }

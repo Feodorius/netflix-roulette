@@ -6,20 +6,28 @@ import Movies from "../movies/movies.container";
 import SortBar from "../../components/sort-bar/sort-bar.component";
 import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 
-import jsonData from "../../../public/mockData";
+import getMovieData from "../../../public/mockData";
 
-const Body = () => (
-    <div className="body-container">
-        <div className="sort-filter-toolbar">
-            <FilterBar />
-            <SortBar />
-        </div>
-        <div className="break-line" />
+const Body = () => {
+    const [movies, setMovies] = React.useState([]);
+
+    React.useEffect(() => {
+        getMovieData().
+            then(data => setMovies(data));
+    });
+
+    return (
         <ErrorBoundary>
-            <Movies movies={jsonData} />
+            <div className="body-container">
+                <div className="sort-filter-toolbar">
+                    <FilterBar />
+                    <SortBar />
+                </div>
+                <div className="break-line" />
+                <Movies movies={movies} />
+            </div>
         </ErrorBoundary>
-
-    </div>
-);
+    )
+};
 
 export default Body;

@@ -1,0 +1,47 @@
+@import "../../utils/variables.scss";
+
+div.delete-dialog-container .MuiPaper-root {
+    max-width: 686px;
+    width: 686px;
+    height: 352px;
+    margin: 0;
+    background-color: $base-black;
+
+    .MuiDialogContent-root {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+}
+
+.delete-dialog {
+    padding: 0 80px;
+    height: 100%;
+    background: $base-black;
+    color: $base-white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    &-heading {
+        margin-top: 64px;
+        margin-bottom: 36px;
+
+        width: 100%;
+        font-family: "Montserrat";
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 49px;
+        letter-spacing: 1px;
+    }
+
+    &-subheading {
+        width: 100%;
+
+        margin-bottom: 52px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 24px;
+    }
+}

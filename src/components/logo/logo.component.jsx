@@ -3,8 +3,8 @@ import "./logo.styles.scss";
 import PropTypes from "prop-types";
 
 
-const Logo = ({ isHeaderLogo }) => (
-    <div className={`${isHeaderLogo ? 'logo-header' : ''} logo`}>
+const Logo = () => (
+    <div className="logo">
         <span className="bold">netflix</span>
         <span className="regular">roulette</span>
     </div>

@@ -8,14 +8,14 @@ import "./filter-bar.styles.scss";
 const FilterBar = () => {
     const [value, setValue] = React.useState(0);
 
-    const handleChange = (event, newValue) => {
+    const filterByGenre = (event, newValue) => {
         event.preventDefault();
         setValue(newValue);
     };
 
     return (
-        <Tabs value={value} onChange={handleChange}>
-            {filterGenres.map(({ index, name }) => (
+        <Tabs value={value} onChange={filterByGenre}>
+            {filterGenres.map(( { name }, index) => (
                 <Tab
                     disableRipple
                     key={index}

@@ -23,7 +23,11 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^5.0.0-beta.5",
+    "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.4",
+    "@mui/lab": "^5.0.0-alpha.49",
+    "@mui/material": "^5.0.2",
+    "date-fns": "^2.25.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

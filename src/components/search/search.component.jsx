@@ -9,11 +9,10 @@ const Search = () => (
     <div className="search">
         <TextField
             className="search-field"
-            color="primary"
             placeholder="What do you want to watch?" />
         <CustomButton
             variant="contained"
-            width="233px"
+            width="232px"
             handleClick={() => { }}>
             SEARCH
         </CustomButton>
