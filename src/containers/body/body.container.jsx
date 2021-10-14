@@ -6,7 +6,7 @@ import Movies from "../movies/movies.container";
 import SortBar from "../../components/sort-bar/sort-bar.component";
 import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 
-const Body = ({ movies }) => {
+const Body = () => {
     return (
         <ErrorBoundary>
             <div className="body-container">
@@ -15,7 +15,7 @@ const Body = ({ movies }) => {
                     <SortBar />
                 </div>
                 <div className="break-line" />
-                <Movies movies={movies} />
+                <Movies />
             </div>
         </ErrorBoundary>
     )

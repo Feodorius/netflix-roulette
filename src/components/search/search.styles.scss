@@ -11,11 +11,11 @@
 }
 
 .header {
-    height: 396px;
+    height: $header-height;
     width: 100%;
     position: relative;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: $header-margin-bottom;
     display: flex;
     justify-content: center;
     align-items: center;

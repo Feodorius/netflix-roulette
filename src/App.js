@@ -6,17 +6,18 @@ import "./App.scss";
 import Header from "./containers/header/header.container";
 import Footer from "./containers/footer/footer.container";
 import Body from "./containers/body/body.container";
-import getMovieData from "../public/mockData";
+
 import { useMovieDetails } from "./utils/hooks";
+import { useDispatch } from "react-redux";
+import { getMovies } from "./store/thunks"
 
 export const Context = React.createContext();
 
 const App = () => {
-    const [movies, setMovies] = React.useState([]);
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
-        getMovieData().
-            then(data => setMovies(data));
+        dispatch(getMovies());
     }, []);
 
     return (
@@ -24,7 +25,7 @@ const App = () => {
             <ThemeProvider theme={muiTheme}>
                 <Context.Provider value={useMovieDetails()}>
                     <Header />
-                    <Body movies={movies} />
+                    <Body />
                 </Context.Provider>
                 <Footer />
             </ThemeProvider>

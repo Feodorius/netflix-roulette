@@ -3,3 +3,11 @@ $base-white: #fff;
 $base-dark-gray: #424242;
 $base-gray: #555555;
 $base-black: #232323;
+
+$header-height: 396px;
+$header-margin-bottom: 10px;
+$footer-height: 70px;
+
+@mixin dynamic-body {
+    min-height: calc(100vh - #{$header-height} - #{$header-margin-bottom} - #{$footer-height});
+}

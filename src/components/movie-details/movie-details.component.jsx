@@ -5,6 +5,8 @@ import Logo from "../../components/logo/logo.component";
 import "../../components/logo/logo.styles.scss";
 import SearchIcon from '@material-ui/icons/Search';
 import { formatDate, formatRuntime } from "../../utils/formatter";
+import { FALLBACK_IMG_SRC } from "../../utils/constants";
+import { replaceImgSrcWithFallback } from "../../utils/utils";
 import { Context } from "../../App";
 
 const MovieDetails = () => {
@@ -28,7 +30,8 @@ const MovieDetails = () => {
                 onClick={() => { context.closeMovieDetails() }} />
             <img
                 className="movie-poster"
-                src={poster_path}
+                onError={replaceImgSrcWithFallback}
+                src={poster_path || FALLBACK_IMG_SRC}
                 alt={title} />
             <div className="movie-info">
                 <div className="first-line-info">
