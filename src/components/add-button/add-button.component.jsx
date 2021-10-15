@@ -18,7 +18,6 @@ const AddButton = () => {
         contained: {
             width: "180px",
             height: "48px",
-
         }
     })();
 
@@ -27,7 +26,6 @@ const AddButton = () => {
     return (
         <>
             {isDialogOpened &&
-
                 <AddEditDialog isOpened={isDialogOpened} close={() => setDialogOpened(false)} type="Add" />
             }
             <ThemeProvider theme={muiTheme}>

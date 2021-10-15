@@ -27,7 +27,11 @@ const MovieItem = ({ movieData }) => {
             onClick={onMovieCardClick}>
             {isMenuButtonRendered && <MenuButton movieData={movieData} />}
             <div className="image-container">
-                <img className="movie-image" onError={replaceImgSrcWithFallback} src={poster_path || FALLBACK_IMG_SRC} alt={title} />
+                <img
+                    className="movie-image"
+                    onError={replaceImgSrcWithFallback}
+                    src={poster_path || FALLBACK_IMG_SRC}
+                    alt={title} />
             </div>
             <div className="name-and-year">
                 <span className="movie-name">{title}</span>
