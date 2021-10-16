@@ -6,6 +6,7 @@ import "./App.scss";
 import Header from "./containers/header/header.container";
 import Footer from "./containers/footer/footer.container";
 import Body from "./containers/body/body.container";
+import Dialogs from "./containers/dialogs/dialogs.container";
 
 import { useMovieDetails } from "./utils/hooks";
 import { useDispatch } from "react-redux";
@@ -24,6 +25,7 @@ const App = () => {
         <div className="main-container">
             <ThemeProvider theme={muiTheme}>
                 <Context.Provider value={useMovieDetails()}>
+                    <Dialogs />
                     <Header />
                     <Body />
                 </Context.Provider>

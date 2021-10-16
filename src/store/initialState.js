@@ -4,8 +4,8 @@ const initialState = {
     sortOption: "release_date",
     filterOption: "All",
     searchString: "",
-    isDeleteDialogOpen: false,
-    isAddEditDialogOpen: false
+    deleteDialog: { opened: false, movieData: null },
+    addEditDialog: { opened: false, type: "Add", movieData: null }
 };
 
 export default initialState;

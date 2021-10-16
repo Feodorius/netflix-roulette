@@ -3,7 +3,8 @@ import "./add-button.styles.scss";
 import { makeStyles } from "@material-ui/styles";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import AddEditDialog from "../add-edit-dialog/add-edit-dialog.component";
+import { openAddDialog } from "../../store/actionCreators";
+import { useDispatch } from "react-redux";
 
 const muiTheme = createTheme({
     palette: {
@@ -21,15 +22,20 @@ const AddButton = () => {
         }
     })();
 
-    const [isDialogOpened, setDialogOpened] = React.useState(false);
+    const dispatch = useDispatch();
+    const openDialog = () => {
+        dispatch(openAddDialog());
+    };
 
     return (
         <>
-            {isDialogOpened &&
-                <AddEditDialog isOpened={isDialogOpened} close={() => setDialogOpened(false)} type="Add" />
-            }
             <ThemeProvider theme={muiTheme}>
-                <Button variant="contained" classes={{ contained: styles.contained }} color="primary" className="add-button" onClick={() => setDialogOpened(true)}>
+                <Button
+                    variant="contained"
+                    classes={{ contained: styles.contained }}
+                    color="primary"
+                    className="add-button"
+                    onClick={openDialog}>
                     + ADD MOVIE
                 </Button>
             </ThemeProvider>
