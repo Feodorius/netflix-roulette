@@ -1,6 +1,6 @@
 import initialState from "../initialState";
 
-import { FILTER, SORT, SEARCH, GET_MOVIES, MANAGE_ADD_EDIT_DIALOG, MANAGE_DELETE_DIALOG, SELECT_MOVIE } from "../../utils/constants";
+import { FILTER, SORT, SEARCH, GET_MOVIES, MANAGE_ADD_EDIT_DIALOG, MANAGE_DELETE_DIALOG, SELECT_MOVIE, MANAGE_MESSAGE_BOX } from "../../utils/constants";
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
@@ -25,6 +25,9 @@ const rootReducer = (state = initialState, { type, payload }) => {
         }
         case MANAGE_DELETE_DIALOG: {
             return { ...state, deleteDialog: payload };
+        }
+        case MANAGE_MESSAGE_BOX: {
+            return { ...state, messageBox: payload };
         }
         default: {
             return state;

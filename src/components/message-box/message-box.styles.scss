@@ -1,0 +1,58 @@
+@import "../../utils/variables.scss";
+
+div.message-box .MuiPaper-root {
+    max-width: 686px;
+    width: 686px;
+    height: 300px;
+    margin: 0;
+    background-color: $base-black;
+
+    .MuiDialogContent-root {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+}
+
+.box {
+    overflow-y: auto;
+    padding: 50px;
+    height: 100%;
+    background: $base-black;
+    color: $base-white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    h2 {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 49px;
+        /* identical to box height */
+        letter-spacing: 1px;
+        margin: 30px auto;
+    }
+
+    h3 {
+        margin: 0;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+    }
+
+    .icon-container {
+        width: 66px;
+        height: 66px;
+        border-radius: 50%;
+        background-color: $base-red;
+
+        .icon {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

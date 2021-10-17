@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./add-edit-dialog.styles.scss";
 
 import CustomButton from "../custom-button/custom-button.component";
+import MessageBox from "../message-box/message-box.component";
 import { genres } from "../../utils/constants";
 
 import CloseIcon from '@material-ui/icons/Close';
-import { Dialog, DialogContent, IconButton, Input, InputLabel, Select, MenuItem, Checkbox, ListItemText, TextField } from "@material-ui/core";
+import { Dialog, DialogContent, IconButton, InputLabel, Select, MenuItem, Checkbox, ListItemText, TextField, FormControl, FormHelperText } from "@material-ui/core";
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
@@ -13,21 +14,25 @@ import { useFormik } from 'formik';
 import { validate } from "../../utils/formik";
 import { checkMovieData } from "../../utils/utils";
 
-import { closeAddEditDialog } from "../../store/actionCreators";
+import { closeAddEditDialog, openMessageBox } from "../../store/actionCreators";
 import { useSelector, useDispatch } from "react-redux";
-
+import { getMovies } from "../../store/thunks";
 
 const AddEditDialog = () => {
     const dialog = useSelector(state => state.addEditDialog);
+    const [messageBoxOpen, setMessageBoxOpen] = useState(false);
+    const [operationSuccessfull, setOperationSuccessfull] = useState(false);
+
     const movieData = dialog.movieData || {
         "title": "",
         "vote_average": "",
         "release_date": null,
         "poster_path": "",
-        "overview": "",       
+        "overview": "",
         "genres": [],
-        "runtime": ""
+        "runtime": "",
     };
+
     const dispatch = useDispatch();
 
     const movieGenres = [...new Set([...genres, ...movieData.genres])];
@@ -36,9 +41,34 @@ const AddEditDialog = () => {
         initialValues,
         validate,
         onSubmit: values => {
-            // close();
+            values.release_date = values.release_date ? values.release_date : "";
+            addEditMovie(checkMovieData(values), dispatch, dialog.type);
+
         },
     });
+
+    const addEditMovie = (movieData, dispatch, type) => {
+        fetch("http://localhost:4000/movies", {
+            method: type === "Add" ? "POST" : "PUT",
+            body: JSON.stringify(movieData),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(resp => {
+                dispatch(getMovies())
+                closeDialog()
+                if (resp.ok) {
+                    dispatch(openMessageBox(true))
+                } else {
+                    dispatch(openMessageBox(false))
+                }
+            })
+            .catch(error => {
+                closeDialog()
+                dispatch(openMessageBox(false))
+            });
+    }
 
     const handleGenreSelect = (event) => {
         const { value } = event.target;
@@ -47,7 +77,8 @@ const AddEditDialog = () => {
     };
 
     const handleDateChange = value => {
-        const newValue = `${value.getFullYear()}-${value.getMonth() + 1}-${value.getDate()}`;
+        const day = value.getDate() < 10 ? `0${value.getDate()}` : value.getDate();
+        const newValue = `${value.getFullYear()}-${value.getMonth() + 1}-${day}`;
         formik.setFieldValue("release_date", newValue);
     }
 
@@ -78,57 +109,65 @@ const AddEditDialog = () => {
                             <div className="long-inputs">
                                 <InputLabel className="dialog-label">
                                     TITLE
-                                    <Input
-                                        color="secondary"
-                                        id="name"
-                                        name="title"
-                                        className="dialog-input"
-                                        placeholder="Movie title"
+                                    <TextField
                                         value={formik.values.title}
+                                        color="secondary"
+                                        id="title"
+                                        name="title"
+                                        placeholder="Movie title"
+                                        className="dialog-input"
                                         error={formik.touched.title && Boolean(formik.errors.title)}
-                                        helpertext={formik.touched.title && formik.errors.title}
-                                        onChange={formik.handleChange} />
+                                        helperText={formik.touched.title && formik.errors.title}
+                                        variant="outlined"
+                                        onChange={formik.handleChange}
+                                    />
                                 </InputLabel>
                                 <InputLabel className="dialog-label">
                                     MOVIE POSTER URL
-                                    <Input
+                                    <TextField
                                         color="secondary"
-                                        name="poster_path"
                                         id="poster_path"
-                                        className="dialog-input"
-                                        error={formik.touched.poster_path && Boolean(formik.errors.poster_path)}
-                                        helpertext={formik.touched.poster_path && formik.errors.poster_path}
+                                        name="poster_path"
                                         placeholder="https://"
+                                        className="dialog-input"
                                         value={formik.values.poster_path}
-                                        onChange={formik.handleChange} />
+                                        error={formik.touched.poster_path && Boolean(formik.errors.poster_path)}
+                                        helperText={formik.touched.poster_path && formik.errors.poster_path}
+                                        variant="outlined"
+                                        onChange={formik.handleChange}
+                                    />
                                 </InputLabel>
                                 <InputLabel className="dialog-label">
                                     GENRE
-                                    <Select
-                                        color="secondary"
-                                        name="genres"
-                                        id="genres"
-                                        multiple
-                                        className="dialog-input select"
-                                        displayEmpty
-                                        error={formik.touched.genres && Boolean(formik.errors.genres)}
-                                        helpertext={formik.touched.genres && formik.errors.genres}
-                                        value={formik.values.genres}
-                                        onChange={handleGenreSelect}
-                                        renderValue={(selected) => {
-                                            if (selected.length === 0) {
-                                                return <span>Select Genre</span>;
-                                            }
-                                            return selected.join(', ')
-                                        }}
-                                        variant="outlined">
-                                        {movieGenres.map(genre => (
-                                            <MenuItem key={genre} value={genre}>
-                                                <Checkbox checked={formik.values.genres.indexOf(genre) > -1} />
-                                                <ListItemText primary={genre} />
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
+                                    <FormControl variant="outlined">
+                                        <Select
+                                            color="secondary"
+                                            name="genres"
+                                            id="genres"
+                                            multiple
+                                            className="dialog-input select"
+                                            displayEmpty
+                                            error={formik.touched.genres && Boolean(formik.errors.genres)}
+                                            value={formik.values.genres}
+                                            onChange={handleGenreSelect}
+                                            renderValue={(selected) => {
+                                                if (selected.length === 0) {
+                                                    return <span>Select Genre</span>;
+                                                }
+                                                return selected.join(', ')
+                                            }}>
+                                            {movieGenres.map(genre => (
+                                                <MenuItem key={genre} value={genre}>
+                                                    <Checkbox checked={formik.values.genres.indexOf(genre) > -1} />
+                                                    <ListItemText primary={genre} />
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        <FormHelperText
+                                            error={formik.touched.genres && Boolean(formik.errors.genres)}>
+                                            {formik.touched.genres && formik.errors.genres}
+                                        </FormHelperText>
+                                    </FormControl>
                                 </InputLabel>
                             </div>
                             <div className="short-inputs">
@@ -140,53 +179,60 @@ const AddEditDialog = () => {
                                             name="release_date"
                                             id="release_date"
                                             onChange={handleDateChange}
+
                                             value={formik.values.release_date}
                                             renderInput={(params) => (
-                                                <TextField color="secondary" className="dialog-input datepicker" {...params} />
-                                            )}
-                                        />
+                                                <TextField color="secondary" className="dialog-input datepicker" {...params} error={formik.touched.release_date && Boolean(formik.errors.release_date)}
+                                                    helperText={formik.touched.release_date && formik.errors.release_date} />
+                                            )} />
                                     </LocalizationProvider>
                                 </InputLabel>
                                 <InputLabel className="dialog-label">
                                     RATING
-                                    <Input
+                                    <TextField
                                         color="secondary"
-                                        name="vote_average"
                                         id="vote_average"
-                                        onChange={formik.handleChange}
-                                        className="dialog-input"
+                                        name="vote_average"
                                         placeholder="7.8"
-                                        value={formik.values.vote_average} />
+                                        className="dialog-input"
+                                        error={formik.touched.vote_average && Boolean(formik.errors.vote_average)}
+                                        helperText={formik.touched.vote_average && formik.errors.vote_average}
+                                        variant="outlined"
+                                        value={formik.values.vote_average}
+                                        onChange={formik.handleChange} />
                                 </InputLabel>
                                 <InputLabel className="dialog-label">
                                     RUNTIME
-                                    <Input
+                                    <TextField
                                         color="secondary"
-                                        name="runtime"
                                         id="runtime"
-                                        onChange={formik.handleChange}
-                                        className="dialog-input"
+                                        name="runtime"
                                         placeholder="Minutes"
+                                        className="dialog-input"
                                         error={formik.touched.runtime && Boolean(formik.errors.runtime)}
-                                        helpertext={formik.touched.runtime && formik.errors.runtime}
-                                        value={formik.values.runtime} />
+                                        helperText={formik.touched.runtime && formik.errors.runtime}
+                                        variant="outlined"
+                                        value={formik.values.runtime}
+                                        onChange={formik.handleChange}
+                                    />
                                 </InputLabel>
                             </div>
                             <InputLabel className="dialog-label textarea">
                                 OVERVIEW
-                                <Input
+                                <TextField
                                     color="secondary"
-                                    name="overview"
                                     id="overview"
-                                    onChange={formik.handleChange}
-                                    className="dialog-input"
-                                    sx={{ height: 200 }}
-                                    rows={9}
-                                    multiline
+                                    name="overview"
                                     placeholder="Movie description"
+                                    className="dialog-input"
                                     error={formik.touched.overview && Boolean(formik.errors.overview)}
-                                    helpertext={formik.touched.overview && formik.errors.overview}
-                                    value={formik.values.overview} />
+                                    helperText={formik.touched.overview && formik.errors.overview}
+                                    variant="outlined"
+                                    multiline
+                                    rows={7}
+                                    value={formik.values.overview}
+                                    onChange={formik.handleChange}
+                                />
                             </InputLabel>
                         </form>
                         <div className="dialog-buttons">
@@ -203,7 +249,7 @@ const AddEditDialog = () => {
                         </div>
                     </div>
                 </DialogContent>
-            </Dialog>
+            </Dialog >
         </>
     )
 };

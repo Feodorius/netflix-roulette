@@ -5,11 +5,21 @@ export const replaceImgSrcWithFallback = event => {
 }
 
 export const checkMovieData = (movieData) => {
-    const copy = JSON.parse(JSON.stringify(movieData));   
+    const copy = JSON.parse(JSON.stringify(movieData));
     for (const property in copy) {
         if (copy.hasOwnProperty(property)) {
             if (copy[property] === null && property !== "release_date")
                 copy[property] = "";
+
+            if (property === "tagline" && !copy[property]) {
+                copy[property] = "tagline_text";
+            }
+            if (property === "runtime") {
+                copy[property] = Number(copy[property]);
+            }
+            if (property === "vote_average") {
+                copy[property] = Number(copy[property]);
+            }           
         }
     }
     return copy;
