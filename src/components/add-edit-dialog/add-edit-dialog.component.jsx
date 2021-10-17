@@ -238,7 +238,7 @@ const AddEditDialog = () => {
                         <div className="dialog-buttons">
                             <CustomButton
                                 variant="outlined"
-                                handleClick={close}>
+                                handleClick={closeDialog}>
                                 REJECT
                             </CustomButton>
                             <CustomButton
