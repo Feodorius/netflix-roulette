@@ -7,6 +7,7 @@ import { replaceImgSrcWithFallback } from "../../utils/utils";
 import { FALLBACK_IMG_SRC } from "../../utils/constants";
 import MenuButton from "../menu-button/menu-button.component";
 import { Context } from "../../App";
+import { MOVIE_IMAGE_CLASS } from "../../utils/constants";
 
 const MovieItem = ({ movieData }) => {
     const { poster_path, title, release_date, genres } = movieData;
@@ -14,7 +15,7 @@ const MovieItem = ({ movieData }) => {
     const context = React.useContext(Context);
 
     const onMovieCardClick = (e) => {
-        if (e.target.className === "movie-image") {
+        if (e.target.className === MOVIE_IMAGE_CLASS) {
             context.openMovieDetails(movieData);
             animateScroll.scrollToTop();
         }

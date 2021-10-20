@@ -1,10 +1,10 @@
-import { getUrl } from "../utils/api";
+import { getSearchQuery } from "../utils/api";
 import { GET_MOVIES } from "../utils/constants";
 
 export const getMovies = () =>
     (dispatch, getState) => {
         const { sortOption, filterOption, searchString } = getState();
-        const url = getUrl(sortOption, filterOption, searchString);
+        const url = getSearchQuery(sortOption, filterOption, searchString);
         fetch(url)
             .then(response => response.json())
             .then(resp => dispatch(

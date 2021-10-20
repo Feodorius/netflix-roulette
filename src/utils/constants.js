@@ -6,6 +6,7 @@ export const FILTER_GENRES = [
     "Crime"
 ];
 export const genres = ["Crime", "Documentary", "Horror", "Comedy"];
+export const MOVIE_IMAGE_CLASS = "movie-image";
 
 export const FILTER = "FILTER";
 export const SORT = "SORT";
