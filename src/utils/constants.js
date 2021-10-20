@@ -7,6 +7,7 @@ export const FILTER_GENRES = [
 ];
 export const genres = ["Crime", "Documentary", "Horror", "Comedy"];
 export const MENU_BUTTON_OPTIONS = ['Edit', 'Delete'];
+export const MOVIE_IMAGE_CLASS = "movie-image";
 
 export const FILTER = "FILTER";
 export const SORT = "SORT";
