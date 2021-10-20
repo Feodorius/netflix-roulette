@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./search.styles.scss";
 
 import CustomButton from "../custom-button/custom-button.component";
@@ -9,7 +9,7 @@ import AddButton from "../../components/add-button/add-button.component";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getMovies } from "../../store/thunks";
-import { SEARCH } from "../../utils/constants";
+import { ACTION_SEARCH } from "../../utils/constants";
 
 const Search = () => {
     const searchString = useSelector(state => state.searchString);
@@ -35,7 +35,7 @@ const Search = () => {
                 <div className="search">
                     <TextField
                         value={searchString}
-                        onChange={e => dispatch({ type: SEARCH, payload: e.target.value })}
+                        onChange={e => dispatch({ type: ACTION_SEARCH, payload: e.target.value })}
                         onKeyPress={handleEnterPress}
                         className="search-field"
                         placeholder="What do you want to watch?" />

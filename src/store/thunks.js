@@ -1,5 +1,5 @@
 import { getSearchQuery } from "../utils/api";
-import { GET_MOVIES } from "../utils/constants";
+import { ACTION_GET_MOVIES } from "../utils/constants";
 
 export const getMovies = () =>
     (dispatch, getState) => {
@@ -9,7 +9,7 @@ export const getMovies = () =>
             .then(response => response.json())
             .then(resp => dispatch(
                 {
-                    type: GET_MOVIES,
+                    type: ACTION_GET_MOVIES,
                     payload: {
                         movies: resp.data,
                         totalMovies: resp.totalAmount

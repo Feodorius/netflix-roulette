@@ -7,7 +7,7 @@ import "./filter-bar.styles.scss";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getMovies } from "../../store/thunks";
-import { FILTER } from "../../utils/constants";
+import { ACTION_FILTER } from "../../utils/constants";
 
 
 const FilterBar = () => {
@@ -16,7 +16,7 @@ const FilterBar = () => {
 
     const filterByGenre = (event, newValue) => {
         event.preventDefault();
-        dispatch({ type: FILTER, payload: FILTER_GENRES[newValue] })
+        dispatch({ type: ACTION_FILTER, payload: FILTER_GENRES[newValue] })
         dispatch(getMovies());
     };
 

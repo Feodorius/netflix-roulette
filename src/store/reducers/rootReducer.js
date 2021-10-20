@@ -1,18 +1,18 @@
 import initialState from "../initialState";
-import { FILTER, SORT, SEARCH, GET_MOVIES } from "../../utils/constants";
+import { ACTION_FILTER, ACTION_SORT, ACTION_SEARCH, ACTION_GET_MOVIES } from "../../utils/constants";
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case FILTER: {
+        case ACTION_FILTER: {
             return { ...state, filterOption: payload };
         }
-        case SORT: {
+        case ACTION_SORT: {
             return { ...state, sortOption: payload };
         }
-        case SEARCH: {
+        case ACTION_SEARCH: {
             return { ...state, searchString: payload };
         }
-        case GET_MOVIES: {
+        case ACTION_GET_MOVIES: {
             const { movies, totalMovies } = payload;               
             return { ...state, movies, totalMovies };
         }
