@@ -4,7 +4,7 @@ import "./header.styles.scss";
 import Search from "../../components/search/search.component";
 import MovieDetails from "../../components/movie-details/movie-details.component";
 import { Context } from "../../App";
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 const Header = () => {
     const context = React.useContext(Context);
