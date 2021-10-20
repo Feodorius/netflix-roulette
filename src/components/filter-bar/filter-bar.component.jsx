@@ -2,27 +2,33 @@ import React from "react";
 import { Tabs } from "@material-ui/core";
 import { Tab } from "@material-ui/core";
 
-import { filterGenres } from "../../utils/constants";
+import { FILTER_GENRES } from "../../utils/constants";
 import "./filter-bar.styles.scss";
 
+import { useSelector, useDispatch } from "react-redux";
+import { getMovies } from "../../store/thunks";
+import { ACTION_FILTER } from "../../utils/constants";
+
+
 const FilterBar = () => {
-    const [value, setValue] = React.useState(0);
+    const filterOption = useSelector(state => state.filterOption);
+    const dispatch = useDispatch();
 
     const filterByGenre = (event, newValue) => {
         event.preventDefault();
-        setValue(newValue);
+        dispatch({ type: ACTION_FILTER, payload: FILTER_GENRES[newValue] })
+        dispatch(getMovies());
     };
 
     return (
-        <Tabs value={value} onChange={filterByGenre}>
-            {filterGenres.map(( { name }, index) => (
+        <Tabs value={FILTER_GENRES.indexOf(filterOption)} onChange={filterByGenre}>
+            {FILTER_GENRES.map((name, index) => (
                 <Tab
                     disableRipple
                     key={index}
                     className="filter-tab"
                     label={name} />
             ))}
-
         </Tabs>
     );
 };

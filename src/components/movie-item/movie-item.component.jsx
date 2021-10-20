@@ -2,19 +2,35 @@ import React from "react";
 import "./movie-item.styles.scss";
 import { formatDate, concatGenres } from "../../utils/formatter";
 import PropTypes from "prop-types";
-
+import { animateScroll } from "react-scroll";
+import { replaceImgSrcWithFallback } from "../../utils/utils";
+import { FALLBACK_IMG_SRC } from "../../utils/constants";
 import MenuButton from "../menu-button/menu-button.component";
-
+import { Context } from "../../App";
 
 const MovieItem = ({ movieData }) => {
     const { poster_path, title, release_date, genres } = movieData;
     const [isMenuButtonRendered, setMenuButtonRendered] = React.useState(false);
+    const context = React.useContext(Context);
+
+    const onMovieCardClick = () => {
+        context.openMovieDetails(movieData);
+        animateScroll.scrollToTop();
+    };
 
     return (
-        < div className="movie-wrapper" onMouseOver={() => setMenuButtonRendered(true)}>
+        < div
+            className="movie-wrapper"
+            onMouseOver={() => setMenuButtonRendered(true)}
+        >
             {isMenuButtonRendered && <MenuButton movieData={movieData} />}
             <div className="image-container">
-                <img className="movie-image" src={poster_path} alt={title} />
+                <img
+                    onClick={onMovieCardClick}
+                    className="movie-image"
+                    onError={replaceImgSrcWithFallback}
+                    src={poster_path || FALLBACK_IMG_SRC}
+                    alt={title} />
             </div>
             <div className="name-and-year">
                 <span className="movie-name">{title}</span>

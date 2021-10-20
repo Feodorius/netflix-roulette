@@ -7,15 +7,31 @@ import Header from "./containers/header/header.container";
 import Footer from "./containers/footer/footer.container";
 import Body from "./containers/body/body.container";
 
-const App = () => (
-    <div className="main-container">
-        <ThemeProvider theme={muiTheme}>
-            <Header />
-            <Body />
-            <Footer />
-        </ThemeProvider>
-    </div>
-);
+import { useMovieDetails } from "./utils/hooks";
+import { useDispatch } from "react-redux";
+import { getMovies } from "./store/thunks"
+
+export const Context = React.createContext();
+
+const App = () => {
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(getMovies());
+    }, []);
+
+    return (
+        <div className="main-container">
+            <ThemeProvider theme={muiTheme}>
+                <Context.Provider value={useMovieDetails()}>
+                    <Header />
+                    <Body />
+                </Context.Provider>
+                <Footer />
+            </ThemeProvider>
+        </div>
+    )
+};
 
 
 export default App;

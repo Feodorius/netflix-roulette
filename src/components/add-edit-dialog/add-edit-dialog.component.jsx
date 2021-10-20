@@ -14,7 +14,6 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 const AddEditDialog = ({ isOpened, close, movieData, type }) => {
     const [form, changeForm] = React.useState(movieData);
 
-
     const handleGengeSelect = (event) => {
         const { value } = event.target;
         changeForm(
@@ -73,7 +72,7 @@ const AddEditDialog = ({ isOpened, close, movieData, type }) => {
                                         disableUnderline
                                         variant="outlined"
                                         placeholder="https://"
-                                        value={form.url}
+                                        value={form.poster_path}
                                         name="url"
                                         onChange={handleFormChange} />
                                 </InputLabel>
@@ -83,7 +82,7 @@ const AddEditDialog = ({ isOpened, close, movieData, type }) => {
                                         multiple
                                         className="dialog-input select"
                                         displayEmpty
-                                        disableunderline="trueF"
+                                        disableunderline="true"
                                         value={form.genres}
                                         onChange={handleGengeSelect}
                                         renderValue={(selected) => {
@@ -138,7 +137,8 @@ const AddEditDialog = ({ isOpened, close, movieData, type }) => {
                                         disableUnderline
                                         variant="outlined"
                                         placeholder="Minutes"
-                                        value={form.runtime} />
+                                        value={form.runtime || ""} /> 
+                                        {/* will remove this plug in the next PR */}                                        
                                 </InputLabel>
                             </div>
                             <InputLabel className="dialog-label textarea">
@@ -189,7 +189,7 @@ AddEditDialog.defaultProps = {
         "budget": "",
         "revenue": "",
         "genres": [],
-        "runtime": ""
+        "runtime": 0
     }
 };
 

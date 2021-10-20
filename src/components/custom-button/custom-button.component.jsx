@@ -31,7 +31,6 @@ CustomButton.propTypes = {
     width: PropTypes.string,
     height: PropTypes.string,
     children: PropTypes.string
-
 };
 CustomButton.defaultProps = { width: "180px", height: "56px" };
 
