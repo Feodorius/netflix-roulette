@@ -11,6 +11,9 @@ import Dialogs from "./containers/dialogs/dialogs.container";
 import { useMovieDetails } from "./utils/hooks";
 import { useDispatch } from "react-redux";
 import { getMovies } from "./store/thunks"
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Search from "./components/search/search.component";
+import MovieDetails from "./components/movie-details/movie-details.component";
 
 export const Context = React.createContext();
 
@@ -23,14 +26,16 @@ const App = () => {
 
     return (
         <div className="main-container">
-            <ThemeProvider theme={muiTheme}>
-                <Context.Provider value={useMovieDetails()}>
-                    <Dialogs />
-                    <Header />
-                    <Body />
-                </Context.Provider>
-                <Footer />
-            </ThemeProvider>
+            <Router>
+                <ThemeProvider theme={muiTheme}>
+                    {/* <Context.Provider value={useMovieDetails()}> */}
+                        <Dialogs />
+                        <Header />
+                        <Body />
+                    {/* </Context.Provider> */}
+                    <Footer />
+                </ThemeProvider>
+            </Router>
         </div>
     )
 };

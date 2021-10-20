@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./search.styles.scss";
 
 import CustomButton from "../custom-button/custom-button.component";

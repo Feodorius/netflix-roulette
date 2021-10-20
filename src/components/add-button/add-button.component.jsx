@@ -28,18 +28,16 @@ const AddButton = () => {
     };
 
     return (
-        <>
-            <ThemeProvider theme={muiTheme}>
-                <Button
-                    variant="contained"
-                    classes={{ contained: styles.contained }}
-                    color="primary"
-                    className="add-button"
-                    onClick={openDialog}>
-                    + ADD MOVIE
-                </Button>
-            </ThemeProvider>
-        </>
+        <ThemeProvider theme={muiTheme}>
+            <Button
+                variant="contained"
+                classes={{ contained: styles.contained }}
+                color="primary"
+                className="add-button"
+                onClick={openDialog}>
+                + ADD MOVIE
+            </Button>
+        </ThemeProvider>
     );
 };
 
