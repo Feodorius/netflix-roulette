@@ -1,5 +1,6 @@
 import { getSearchQuery } from "../utils/api";
-import { GET_MOVIES } from "../utils/constants";
+import { ACTION_GET_MOVIES, URL } from "../utils/constants";
+import { closeAddEditDialog, openMessageBox } from "./actionCreators";
 
 export const getMovies = () =>
     (dispatch, getState) => {
@@ -9,7 +10,7 @@ export const getMovies = () =>
             .then(response => response.json())
             .then(resp => dispatch(
                 {
-                    type: GET_MOVIES,
+                    type: ACTION_GET_MOVIES,
                     payload: {
                         movies: resp.data,
                         totalMovies: resp.totalAmount
@@ -19,3 +20,30 @@ export const getMovies = () =>
                 console.log(error)
             });
     };
+
+export const addEditMovie = (movieData, type) =>
+    dispatch => {
+        fetch(URL, {
+            method: type === "Add" ? "POST" : "PUT",
+            body: JSON.stringify(movieData),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(resp => {              
+                dispatch(getMovies())
+                dispatch(closeAddEditDialog())
+                if (resp.ok) {
+                    console.log("ok")
+                    dispatch(openMessageBox(true))
+                } else {
+                    console.log("no ok")
+                    dispatch(openMessageBox(false))
+                }
+            })
+            .catch(error => {
+                dispatch(closeAddEditDialog())
+                dispatch(openMessageBox(false))
+            });
+
+    }

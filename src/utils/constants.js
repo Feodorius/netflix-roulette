@@ -7,19 +7,19 @@ export const FILTER_GENRES = [
 ];
 export const genres = ["Crime", "Documentary", "Horror", "Comedy"];
 export const MENU_BUTTON_OPTIONS = ['Edit', 'Delete'];
-export const MOVIE_IMAGE_CLASS = "movie-image";
 
-export const FILTER = "FILTER";
-export const SORT = "SORT";
-export const SEARCH = "SEARCH";
+export const ACTION_FILTER = "FILTER";
+export const ACTION_SORT = "SORT";
+export const ACTION_SEARCH = "SEARCH";
 
+export const ACTION_GET_MOVIES = "GET_MOVIES";
+export const ACTION_SELECT_MOVIE = "SELECT_MOVIE";
 
-export const GET_MOVIES = "GET_MOVIES";
-export const SELECT_MOVIE = "SELECT_MOVIE";
+export const ACTION_MANAGE_ADD_EDIT_DIALOG = "MANAGE_ADD_EDIT_DIALOG";
+export const ACTION_MANAGE_DELETE_DIALOG = "MANAGE_DELETE_DIALOG";
+export const ACTION_MANAGE_MESSAGE_BOX = "MANAGE_MESSAGE_BOX";
 
-export const MANAGE_ADD_EDIT_DIALOG = "MANAGE_ADD_EDIT_DIALOG";
-export const MANAGE_DELETE_DIALOG = "MANAGE_DELETE_DIALOG";
-export const MANAGE_MESSAGE_BOX = "MANAGE_MESSAGE_BOX";
+export const URL = "http://localhost:4000/movies";
+export const RESPONSE_LIMIT = "?limit=20";
 
-export const URL = "http://localhost:4000/movies?limit=20";
 export const FALLBACK_IMG_SRC = `${window.location.origin}/images/image-not-found.png`;

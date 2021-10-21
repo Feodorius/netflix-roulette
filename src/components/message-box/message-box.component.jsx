@@ -30,11 +30,11 @@ const MessageBox = () => {
                     <div className="box">
                         <div className="icon-container">
                             {
-                                messageBox.success ? <DoneIcon className="icon" /> : <ClearIcon className="icon" />
+                                messageBox.isSuccessfull ? <DoneIcon className="icon" /> : <ClearIcon className="icon" />
                             }
                         </div>
-                        <h2>{messageBox.success ? "CONGRADULATIONS!" : "ERROR!"}</h2>
-                        <h3>{messageBox.success ? "Operation was finished successfully!" : "Something went wrong."} </h3>
+                        <h2>{messageBox.isSuccessfull ? "CONGRADULATIONS!" : "ERROR!"}</h2>
+                        <h3>{messageBox.isSuccessfull ? "Operation was finished successfully!" : "Something went wrong."} </h3>
                     </div>
                 </DialogContent>
             </Dialog >

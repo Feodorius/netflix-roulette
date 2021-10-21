@@ -4,7 +4,7 @@ export const replaceImgSrcWithFallback = event => {
     event.target.src = FALLBACK_IMG_SRC;
 }
 
-export const checkMovieData = (movieData) => {
+export const fixMovieData = (movieData) => {
     const copy = JSON.parse(JSON.stringify(movieData));
     for (const property in copy) {
         if (copy.hasOwnProperty(property)) {

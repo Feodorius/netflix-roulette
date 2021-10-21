@@ -7,29 +7,27 @@ import SearchIcon from '@material-ui/icons/Search';
 import { formatDate, formatRuntime } from "../../utils/formatter";
 import { FALLBACK_IMG_SRC } from "../../utils/constants";
 import { replaceImgSrcWithFallback } from "../../utils/utils";
-import { Context } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const MovieDetails = () => {
-    // const context = React.useContext(Context);
-    const 
-        poster_path="",
-        title="Title",
-        vote_average=8.7,
-        genres=[],
-        release_date="2020-12-12",
-        runtime=120,
-        overview="overview";
+    let movieId = useParams();
+
+    const
+        poster_path = "",
+        title = "Title",
+        vote_average = 8.7,
+        genres = [],
+        release_date = "2020-12-12",
+        runtime = 120,
+        overview = "overview";
     return (
         <div className="details-container">
             <Logo />
-            <Link to="/search">
+            <Link to={`/search`}>
                 <SearchIcon
                     className="search-icon"
                     color="primary"
-                    fontSize="large"
-                // onClick={() => { context.closeMovieDetails() }}
-                />
+                    fontSize="large" />
             </Link>
             <img
                 className="movie-poster"

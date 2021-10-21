@@ -6,7 +6,7 @@ const initialState = {
     searchString: "",
     deleteDialog: { opened: false, movieData: null },
     addEditDialog: { opened: false, type: "Add", movieData: null },
-    messageBox: { opened: false, success: false }
+    messageBox: { opened: false, isSuccessfull: false }
 };
 
 export default initialState;

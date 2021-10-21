@@ -1,32 +1,41 @@
 import initialState from "../initialState";
 
-import { FILTER, SORT, SEARCH, GET_MOVIES, MANAGE_ADD_EDIT_DIALOG, MANAGE_DELETE_DIALOG, SELECT_MOVIE, MANAGE_MESSAGE_BOX } from "../../utils/constants";
+import {
+    ACTION_FILTER,
+    ACTION_SORT,
+    ACTION_SEARCH,
+    ACTION_GET_MOVIES,
+    ACTION_MANAGE_ADD_EDIT_DIALOG,
+    ACTION_MANAGE_DELETE_DIALOG,
+    ACTION_SELECT_MOVIE,
+    ACTION_MANAGE_MESSAGE_BOX
+} from "../../utils/constants";
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case FILTER: {
+        case ACTION_FILTER: {
             return { ...state, filterOption: payload };
         }
-        case SORT: {
+        case ACTION_SORT: {
             return { ...state, sortOption: payload };
         }
-        case SEARCH: {
+        case ACTION_SEARCH: {
             return { ...state, searchString: payload };
         }
-        case GET_MOVIES: {
+        case ACTION_GET_MOVIES: {
             const { movies, totalMovies } = payload;
             return { ...state, movies, totalMovies };
         }
-        case SELECT_MOVIE: {
+        case ACTION_SELECT_MOVIE: {
             return { ...state, selectedMovie: payload };
         }
-        case MANAGE_ADD_EDIT_DIALOG: {
+        case ACTION_MANAGE_ADD_EDIT_DIALOG: {
             return { ...state, addEditDialog: payload };
         }
-        case MANAGE_DELETE_DIALOG: {
+        case ACTION_MANAGE_DELETE_DIALOG: {
             return { ...state, deleteDialog: payload };
         }
-        case MANAGE_MESSAGE_BOX: {
+        case ACTION_MANAGE_MESSAGE_BOX: {
             return { ...state, messageBox: payload };
         }
         default: {

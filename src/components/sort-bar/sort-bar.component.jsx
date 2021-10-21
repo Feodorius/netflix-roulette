@@ -3,7 +3,7 @@ import "./sort-bar.styles.scss";
 import { Select, MenuItem } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
 import { getMovies } from "../../store/thunks";
-import { SORT } from "../../utils/constants"
+import { ACTION_SORT } from "../../utils/constants"
 
 const SortBar = () => {
 
@@ -11,7 +11,7 @@ const SortBar = () => {
     const dispatch = useDispatch();
 
     const sortByParameter = (event) => {
-        dispatch({ type: SORT, payload: event.target.value })
+        dispatch({ type: ACTION_SORT, payload: event.target.value })
         dispatch(getMovies());
     };
 

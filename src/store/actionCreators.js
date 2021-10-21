@@ -1,32 +1,32 @@
-import { MANAGE_ADD_EDIT_DIALOG, MANAGE_DELETE_DIALOG, MANAGE_MESSAGE_BOX } from "../utils/constants";
+import { ACTION_MANAGE_ADD_EDIT_DIALOG, ACTION_MANAGE_DELETE_DIALOG, ACTION_MANAGE_MESSAGE_BOX } from "../utils/constants";
 export const openAddDialog = () => (
     {
-        type: MANAGE_ADD_EDIT_DIALOG, payload: { type: "Add", opened: true, movieData: null }
+        type: ACTION_MANAGE_ADD_EDIT_DIALOG, payload: { type: "Add", opened: true, movieData: null }
     });
 
 export const openEditDialog = (movieData) => (
     {
-        type: MANAGE_ADD_EDIT_DIALOG, payload: { type: "Edit", opened: true, movieData }
+        type: ACTION_MANAGE_ADD_EDIT_DIALOG, payload: { type: "Edit", opened: true, movieData }
     });
 export const closeAddEditDialog = () => (
     {
-        type: MANAGE_ADD_EDIT_DIALOG, payload: { type: "Add", opened: false, movieData: null }
+        type: ACTION_MANAGE_ADD_EDIT_DIALOG, payload: { type: "Add", opened: false, movieData: null }
     });
 
 export const openDeleteDialog = (movieData) => (
     {
-        type: MANAGE_DELETE_DIALOG, payload: { opened: true, movieData }
+        type: ACTION_MANAGE_DELETE_DIALOG, payload: { opened: true, movieData }
     });
 export const closeDeleteDialog = () => (
     {
-        type: MANAGE_DELETE_DIALOG, payload: { opened: false, movieData: null }
+        type: ACTION_MANAGE_DELETE_DIALOG, payload: { opened: false, movieData: null }
     });
 
-export const openMessageBox = (success) => (
+export const openMessageBox = (isSuccessfull) => (
     {
-        type: MANAGE_MESSAGE_BOX, payload: { opened: true, success }
+        type: ACTION_MANAGE_MESSAGE_BOX, payload: { opened: true, isSuccessfull }
     });
 export const closeMessageBox = () => (
     {
-        type: MANAGE_MESSAGE_BOX, payload: { opened: false, success: false }
+        type: ACTION_MANAGE_MESSAGE_BOX, payload: { opened: false, isSuccessfull: false }
     });

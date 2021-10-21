@@ -1,27 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import "./add-edit-dialog.styles.scss";
 
 import CustomButton from "../custom-button/custom-button.component";
-import MessageBox from "../message-box/message-box.component";
 import { genres } from "../../utils/constants";
 
 import CloseIcon from '@material-ui/icons/Close';
-import { Dialog, DialogContent, IconButton, InputLabel, Select, MenuItem, Checkbox, ListItemText, TextField, FormControl, FormHelperText } from "@material-ui/core";
+import {
+    Dialog,
+    DialogContent,
+    IconButton,
+    InputLabel,
+    Select,
+    MenuItem,
+    Checkbox,
+    ListItemText,
+    TextField,
+    FormControl,
+    FormHelperText
+} from "@material-ui/core";
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 import { useFormik } from 'formik';
 import { validate } from "../../utils/formik";
-import { checkMovieData } from "../../utils/utils";
+import { fixMovieData } from "../../utils/utils";
 
-import { closeAddEditDialog, openMessageBox } from "../../store/actionCreators";
+import { closeAddEditDialog } from "../../store/actionCreators";
 import { useSelector, useDispatch } from "react-redux";
-import { getMovies } from "../../store/thunks";
+import { addEditMovie } from "../../store/thunks";
 
 const AddEditDialog = () => {
     const dialog = useSelector(state => state.addEditDialog);
-    const [messageBoxOpen, setMessageBoxOpen] = useState(false);
-    const [operationSuccessfull, setOperationSuccessfull] = useState(false);
 
     const movieData = dialog.movieData || {
         "title": "",
@@ -36,39 +45,15 @@ const AddEditDialog = () => {
     const dispatch = useDispatch();
 
     const movieGenres = [...new Set([...genres, ...movieData.genres])];
-    const initialValues = checkMovieData(movieData);
+    const initialValues = fixMovieData(movieData);
     const formik = useFormik({
         initialValues,
         validate,
         onSubmit: values => {
             values.release_date = values.release_date ? values.release_date : "";
-            addEditMovie(checkMovieData(values), dispatch, dialog.type);
-
+            dispatch(addEditMovie(fixMovieData(values), dialog.type));
         },
     });
-
-    const addEditMovie = (movieData, dispatch, type) => {
-        fetch("http://localhost:4000/movies", {
-            method: type === "Add" ? "POST" : "PUT",
-            body: JSON.stringify(movieData),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(resp => {
-                dispatch(getMovies())
-                closeDialog()
-                if (resp.ok) {
-                    dispatch(openMessageBox(true))
-                } else {
-                    dispatch(openMessageBox(false))
-                }
-            })
-            .catch(error => {
-                closeDialog()
-                dispatch(openMessageBox(false))
-            });
-    }
 
     const handleGenreSelect = (event) => {
         const { value } = event.target;
