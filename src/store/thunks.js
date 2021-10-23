@@ -30,14 +30,12 @@ export const addEditMovie = (movieData, type) =>
                 'Content-Type': 'application/json'
             },
         })
-            .then(resp => {              
+            .then(resp => {
                 dispatch(getMovies())
                 dispatch(closeAddEditDialog())
                 if (resp.ok) {
-                    console.log("ok")
                     dispatch(openMessageBox(true))
                 } else {
-                    console.log("no ok")
                     dispatch(openMessageBox(false))
                 }
             })

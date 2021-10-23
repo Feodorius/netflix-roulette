@@ -1,19 +1,3 @@
-import React from "react";
+import { useLocation } from "react-router";
 
-export const useMovieDetails = () => {
-    const [isSearchOpened, setSearchOpened] = React.useState(true);
-    const [selectedMovie, setSelectedMovie] = React.useState({});
-
-    const openMovieDetails = (movieData) => {
-        setSearchOpened(false);
-        setSelectedMovie(movieData);
-    };
-
-    const closeMovieDetails = () => {
-        setSearchOpened(true);
-        setSelectedMovie({});
-    };
-
-
-    return { isSearchOpened, selectedMovie, openMovieDetails, closeMovieDetails, };
-};
+export const useQuery = () => new URLSearchParams(useLocation().search);

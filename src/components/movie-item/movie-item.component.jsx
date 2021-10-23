@@ -17,30 +17,30 @@ const MovieItem = ({ movieData }) => {
     };
 
     return (
-        <Link to={`/movie/${id}`} style={{ textDecoration: 'none' }}>
-            < div
-                className="movie-wrapper"
-                onMouseOver={() => setMenuButtonRendered(true)}>
-                {isMenuButtonRendered && <MenuButton movieData={movieData} />}
-                <div className="image-container">
+        < div
+            className="movie-wrapper"
+            onMouseOver={() => setMenuButtonRendered(true)}>
+            {isMenuButtonRendered && <MenuButton movieData={movieData} />}
+            <div className="image-container">
+                <Link to={`/movie/${id}`} style={{ textDecoration: 'none' }}>
                     <img
                         onClick={onMovieCardClick}
                         className="movie-image"
                         onError={replaceImgSrcWithFallback}
                         src={poster_path || FALLBACK_IMG_SRC}
                         alt={title} />
-                </div>
-                <div className="name-and-year">
-                    <span className="movie-name">{title}</span>
-                    <span className="movie-year-wrapper">
-                        <span className="movie-year">
-                            {formatDate(release_date)}
-                        </span>
+                </Link>
+            </div>
+            <div className="name-and-year">
+                <span className="movie-name">{title}</span>
+                <span className="movie-year-wrapper">
+                    <span className="movie-year">
+                        {formatDate(release_date)}
                     </span>
-                </div>
-                <span className="movie-genres">{concatGenres(genres)}</span>
-            </div >
-        </Link>
+                </span>
+            </div>
+            <span className="movie-genres">{concatGenres(genres)}</span>
+        </div >
     )
 };
 

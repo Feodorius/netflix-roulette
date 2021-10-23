@@ -17,9 +17,9 @@ const Header = () => {
                 <Route path="/search">
                     <Search />
                 </Route>
-                <Route path="/movie/:id" exact>
+                <Route path="/movie/:id">
                     <MovieDetails />
-                </Route>              
+                </Route>             
             </Switch>
         </>
     )

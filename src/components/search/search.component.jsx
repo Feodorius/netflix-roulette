@@ -10,19 +10,19 @@ import AddButton from "../../components/add-button/add-button.component";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovies } from "../../store/thunks";
 import { ACTION_SEARCH } from "../../utils/constants";
+import { useQuery } from "../../utils/hooks";
 
 const Search = () => {
+    const query = useQuery();
+    
     const searchString = useSelector(state => state.searchString);
     const dispatch = useDispatch();
-
     const handleEnterPress = (event) => {
         if (event.key === 'Enter') {
             handleSearch();
         }
     };
-    const handleSearch = () => {       
-        dispatch(getMovies());
-    };
+    const handleSearch = () => dispatch(getMovies());
 
     return (
         <div className="header">

@@ -3,15 +3,16 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import muiTheme from "./utils/mui-theme";
 import "./App.scss";
 
-import Header from "./containers/header/header.container";
 import Footer from "./containers/footer/footer.container";
 import Body from "./containers/body/body.container";
 import Dialogs from "./containers/dialogs/dialogs.container";
 
 import { useDispatch } from "react-redux";
 import { getMovies } from "./store/thunks"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import NotFound from "./containers/404/404.container";
+import Search from "./components/search/search.component";
+import MovieDetails from "./components/movie-details/movie-details.component";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -26,8 +27,15 @@ const App = () => {
                 <ThemeProvider theme={muiTheme}>
                     <Dialogs />
                     <Switch>
-                        <Route path="/">
-                            <Header />
+                        <Route path="/" exact>
+                            <Redirect from="/" to="/search" />
+                        </Route>
+                        <Route path="/search">
+                            <Search />
+                            <Body />
+                        </Route>
+                        <Route path="/movie/:id" exact>
+                            <MovieDetails />
                             <Body />
                         </Route>
                         <Route path="*" component={NotFound} />
