@@ -6,7 +6,7 @@
   "scripts": {
     "start:server": "cd ./server && npm start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"concurrently 'npm:start:*'",
+    "start": "concurrently 'npm:start:*'",
     "start:ui": "webpack serve --mode development --open --hot",
     "build:dev": "webpack --env dev --mode development",
     "build:prod": "webpack --env prod --mode production"

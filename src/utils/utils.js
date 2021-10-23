@@ -4,7 +4,7 @@ export const replaceImgSrcWithFallback = event => {
     event.target.src = FALLBACK_IMG_SRC;
 }
 
-export const fixMovieData = (movieData) => {
+export const fixMovieData = (movieData) => { // data from api sometimes has invalid fields, so this f-n fixes data
     const copy = JSON.parse(JSON.stringify(movieData));
     for (const property in copy) {
         if (copy.hasOwnProperty(property)) {

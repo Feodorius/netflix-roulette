@@ -1,6 +1,6 @@
 import { getSearchQuery } from "../utils/api";
 import { ACTION_GET_MOVIES, URL } from "../utils/constants";
-import { closeAddEditDialog, openMessageBox } from "./actionCreators";
+import { closeAddEditDialog, closeDeleteDialog, openMessageBox } from "./actionCreators";
 
 export const getMovies = () =>
     (dispatch, getState) => {
@@ -43,5 +43,24 @@ export const addEditMovie = (movieData, type) =>
                 dispatch(closeAddEditDialog())
                 dispatch(openMessageBox(false))
             });
+    };
 
-    }
+export const deleteMovie = (id) =>
+    dispatch => {
+        fetch(`${URL}/${id}`, {
+            method: "DELETE"
+        })
+            .then(resp => {
+                dispatch(getMovies())
+                dispatch(closeDeleteDialog());
+                if (resp.ok) {
+                    dispatch(openMessageBox(true))
+                } else {
+                    dispatch(openMessageBox(false))
+                }
+            })
+            .catch(error => {
+                dispatch(closeDeleteDialog());
+                dispatch(openMessageBox(false))
+            });
+    };
