@@ -4,7 +4,7 @@ import { closeAddEditDialog, closeDeleteDialog, openMessageBox } from "./actionC
 
 export const getMovies = () =>
     (dispatch, getState) => {
-        const { sortOption, filterOption, searchString } = getState();
+        const { sortOption, filterOption, searchString } = getState();       
         const url = getSearchQuery(sortOption, filterOption, searchString);
         fetch(url)
             .then(response => response.json())

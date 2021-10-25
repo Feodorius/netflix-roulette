@@ -22,7 +22,7 @@ const MovieItem = ({ movieData }) => {
             onMouseOver={() => setMenuButtonRendered(true)}>
             {isMenuButtonRendered && <MenuButton movieData={movieData} />}
             <div className="image-container">
-                <Link to={`/movie/${id}`} style={{ textDecoration: 'none' }}>
+                <Link to={`/movie=${id}`} style={{ textDecoration: 'none' }}>
                     <img
                         onClick={onMovieCardClick}
                         className="movie-image"

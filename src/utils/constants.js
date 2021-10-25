@@ -1,9 +1,9 @@
 export const FILTER_GENRES = [
-    "All",
-    "Documentary",
-    "Comedy",
-    "Horror",
-    "Crime"
+    "all",
+    "documentary",
+    "comedy",
+    "horror",
+    "crime"
 ];
 export const genres = ["Crime", "Documentary", "Horror", "Comedy"];
 export const MENU_BUTTON_OPTIONS = ['Edit', 'Delete'];
@@ -23,3 +23,4 @@ export const URL = "http://localhost:4000/movies";
 export const RESPONSE_LIMIT = "?limit=20";
 
 export const FALLBACK_IMG_SRC = `${window.location.origin}/images/image-not-found.png`;
+export const DEFAULT_SEARCH_QUERY = { genre: 'all', sortBy: 'release_date'};

@@ -19,4 +19,4 @@ const Body = () => (
     </ErrorBoundary>
 );
 
-export default React.memo(Body);
+export default Body;

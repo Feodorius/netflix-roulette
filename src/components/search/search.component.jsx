@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./search.styles.scss";
 
 import CustomButton from "../custom-button/custom-button.component";
@@ -7,22 +7,60 @@ import Logo from "../../components/logo/logo.component";
 import "../../components/logo/logo.styles.scss";
 import AddButton from "../../components/add-button/add-button.component";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/thunks";
 import { ACTION_SEARCH } from "../../utils/constants";
-import { useQuery } from "../../utils/hooks";
+import { useHistory, useParams } from "react-router";
+import queryString from "query-string";
 
 const Search = () => {
-    const query = useQuery();
-    
+    const history = useHistory();
+    const query = queryString.parse(history.location.search);
+    const sortOption = useSelector(state => state.sortOption);
+    const filterOption = useSelector(state => state.filterOption);
     const searchString = useSelector(state => state.searchString);
+    const { searchQuery } = useParams();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        syncQueryWithRedux();
+        addFilterSortQueries();
+    }, [searchString, sortOption, filterOption]);
+
+    const syncQueryWithRedux = () => {
+        if (searchQuery !== searchString) {
+            const search = searchQuery || "";
+            dispatch({ type: ACTION_SEARCH, payload: search })
+        }
+    };
+
+    const addFilterSortQueries = () => {
+        const checkArray = ["/search", "/search/", `/search/${searchString}`];
+        if (checkArray.includes(history.location.pathname)) {
+            history.replace({
+                pathname: `/search${searchString ? '/' + searchString : ''}`,
+                search: `?${queryString.stringify({ genre: filterOption, sortBy: sortOption })}`
+            });
+        }
+    };
+
     const handleEnterPress = (event) => {
         if (event.key === 'Enter') {
             handleSearch();
         }
     };
-    const handleSearch = () => dispatch(getMovies());
+
+    const handleSearch = () => {
+        let pathname = "/search";
+        if (searchString) {
+            pathname = `/search/${searchString}`
+        }
+        history.push({
+            pathname,
+            search: `?${queryString.stringify(query)}`
+        });
+        dispatch(getMovies());
+    };
 
     return (
         <div className="header">

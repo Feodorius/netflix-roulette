@@ -6,10 +6,17 @@ import ClearIcon from '@material-ui/icons/Clear';
 import "./message-box.styles.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { closeMessageBox } from "../../store/actionCreators";
+import { useHistory } from "react-router";
 
 const MessageBox = () => {
     const dispatch = useDispatch();
-    const messageBox = useSelector(state => state.messageBox)
+    const messageBox = useSelector(state => state.messageBox);
+    
+    let history = useHistory();
+    if (messageBox.opened && history.location.pathname !== "/search") {
+        setTimeout(() => history.replace("/search"), 0);
+    }
+
     return (
         <>
             <Dialog

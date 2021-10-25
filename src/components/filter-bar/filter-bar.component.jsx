@@ -1,23 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Tabs } from "@material-ui/core";
 import { Tab } from "@material-ui/core";
 
-import { FILTER_GENRES } from "../../utils/constants";
+import { ACTION_FILTER, FILTER_GENRES } from "../../utils/constants";
 import "./filter-bar.styles.scss";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import queryString from "query-string";
 import { getMovies } from "../../store/thunks";
-import { ACTION_FILTER } from "../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const FilterBar = () => {
+    const history = useHistory();
+    const sortOption = useSelector(state => state.sortOption);
     const filterOption = useSelector(state => state.filterOption);
+    const query = queryString.parse(history.location.search);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        syncFilterWithRedux();
+    }, []);
+
+    const syncFilterWithRedux = () => {
+        if (history.location.pathname.indexOf("/search") === 0) {
+            if (FILTER_GENRES.includes(query.genre) && query.genre !== filterOption) {
+                dispatch({ type: ACTION_FILTER, payload: query.genre })
+            }
+        }
+    };
 
     const filterByGenre = (event, newValue) => {
         event.preventDefault();
         dispatch({ type: ACTION_FILTER, payload: FILTER_GENRES[newValue] })
-        dispatch(getMovies());
+        if (location.pathname.indexOf("/search") === 0) {
+            const query = { genre: FILTER_GENRES[newValue], sortBy: sortOption }
+            history.push({
+                pathname: location.pathname,
+                search: `?${queryString.stringify(query)}`
+            });
+            dispatch(getMovies());
+        } else {
+            dispatch(getMovies());
+        }
     };
 
     return (

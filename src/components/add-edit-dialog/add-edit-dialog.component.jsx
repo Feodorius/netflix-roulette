@@ -164,10 +164,12 @@ const AddEditDialog = () => {
                                             name="release_date"
                                             id="release_date"
                                             onChange={handleDateChange}
-
                                             value={formik.values.release_date}
                                             renderInput={(params) => (
-                                                <TextField color="secondary" className="dialog-input datepicker" {...params} error={formik.touched.release_date && Boolean(formik.errors.release_date)}
+                                                <TextField
+                                                    color="secondary"
+                                                    className="dialog-input datepicker" {...params}
+                                                    error={formik.touched.release_date && Boolean(formik.errors.release_date)}
                                                     helperText={formik.touched.release_date && formik.errors.release_date} />
                                             )} />
                                     </LocalizationProvider>

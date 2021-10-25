@@ -8,9 +8,14 @@ import { formatDate, formatRuntime } from "../../utils/formatter";
 import { FALLBACK_IMG_SRC } from "../../utils/constants";
 import { replaceImgSrcWithFallback } from "../../utils/utils";
 import { Link, useParams } from "react-router-dom";
-import { getModieData } from "../../utils/api";
+import { getMovieData } from "../../utils/api";
+import queryString from "query-string";
+import { useSelector } from "react-redux";
 
 const MovieDetails = () => {
+    const sortOption = useSelector(state => state.sortOption);
+    const filterOption = useSelector(state => state.filterOption);
+    const searchString = useSelector(state => state.searchString);
     let { id } = useParams();
     const [isMovieFound, setMovieFound] = useState(false);
     const [state, setState] = useState({
@@ -22,8 +27,9 @@ const MovieDetails = () => {
         runtime: 0,
         overview: ""
     });
+
     useEffect(() =>
-        getModieData(id).then(resp => {
+        getMovieData(id).then(resp => {
             if (resp.ok) {
                 setMovieFound(true);
                 return resp.json()
@@ -36,17 +42,23 @@ const MovieDetails = () => {
     return (
         <div className="details-container">
             <Logo />
-            <Link to={`/search`}>
+            <Link to={{
+                pathname: `search${searchString ? '/' + searchString : ''}`,
+                search: `?${queryString.stringify({ sortBy: sortOption, genre: filterOption })}`
+            }}>
                 <SearchIcon
                     className="search-icon"
                     color="primary"
                     fontSize="large" />
             </Link>
-            {!isMovieFound &&
+            {
+                !isMovieFound &&
                 <div className="notfound">
                     <h2>MOVIE NOT FOUND</h2>
-                </div>}
-            {isMovieFound &&
+                </div>
+            }
+            {
+                isMovieFound &&
                 <div className="info-container">
                     <img
                         className="movie-poster"
@@ -71,7 +83,8 @@ const MovieDetails = () => {
                             {state.overview}
                         </div>
                     </div>
-                </div>}
+                </div>
+            }
         </div >
     );
 };
