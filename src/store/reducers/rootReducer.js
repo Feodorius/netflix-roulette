@@ -11,6 +11,7 @@ import {
     ACTION_MANAGE_MESSAGE_BOX
 } from "../../utils/constants";
 
+
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case ACTION_FILTER: {
