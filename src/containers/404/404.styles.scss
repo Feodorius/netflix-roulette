@@ -1,14 +1,14 @@
 @import "../../utils/variables.scss";
 
 .not-found {
-    height: calc(100vh - 70px);
+    height: calc(100vh - #{$footer-height});
     background-color: $base-black;
     width: 100%;
     display: flex;
     justify-content: center;
 
     h2 {
-        margin: 100px 0;        
+        margin: 100px 0;
         color: $base-white;
         font-size: 3rem;
     }

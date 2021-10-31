@@ -24,6 +24,9 @@ const Search = () => {
 
     useEffect(() => {
         syncQueryWithRedux();
+    }, []);
+
+    useEffect(() => {
         addFilterSortQueries();
     }, [searchString, sortOption, filterOption]);
 

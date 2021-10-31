@@ -15,7 +15,6 @@ const MovieItem = ({ movieData }) => {
     const onMovieCardClick = () => {
         animateScroll.scrollToTop();
     };
-
     return (
         < div
             className="movie-wrapper"
@@ -52,4 +51,4 @@ MovieItem.propTypes = {
     genres: PropTypes.array
 };
 
-export default MovieItem;
+export default React.memo(MovieItem);

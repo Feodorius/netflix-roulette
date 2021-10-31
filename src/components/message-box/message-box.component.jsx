@@ -12,7 +12,7 @@ const MessageBox = () => {
     const dispatch = useDispatch();
     const messageBox = useSelector(state => state.messageBox);
     
-    let history = useHistory();
+    const history = useHistory();
     if (messageBox.opened && history.location.pathname !== "/search") {
         setTimeout(() => history.replace("/search"), 0);
     }

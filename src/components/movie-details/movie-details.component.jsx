@@ -16,7 +16,7 @@ const MovieDetails = () => {
     const sortOption = useSelector(state => state.sortOption);
     const filterOption = useSelector(state => state.filterOption);
     const searchString = useSelector(state => state.searchString);
-    let { id } = useParams();
+    const { id } = useParams();
     const [isMovieFound, setMovieFound] = useState(false);
     const [state, setState] = useState({
         poster_path: "",
@@ -34,9 +34,9 @@ const MovieDetails = () => {
                 setMovieFound(true);
                 return resp.json()
                     .then(resp => setState(resp));
-            } else {
-                setMovieFound(false);
             }
+            setMovieFound(false);
+
         }), [id]);
 
     return (
