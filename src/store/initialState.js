@@ -2,10 +2,11 @@ const initialState = {
     movies: [],
     totalMovies: 0,
     sortOption: "release_date",
-    filterOption: "All",
+    filterOption: "all",
     searchString: "",
-    isDeleteDialogOpen: false,
-    isAddEditDialogOpen: false
+    deleteDialog: { opened: false, movieData: null },
+    addEditDialog: { opened: false, type: "Add", movieData: null },
+    messageBox: { opened: false, isSuccessfull: false }
 };
 
 export default initialState;

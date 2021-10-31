@@ -1,7 +1,5 @@
 import React from "react";
 import "./movies.styles.scss";
-import PropTypes from "prop-types";
-
 import MovieItem from "../../components/movie-item/movie-item.component";
 import { useSelector } from "react-redux";
 
@@ -23,12 +21,6 @@ const Movies = () => {
             </div>
         </>
     )
-}
-    ;
-
-Movies.propTypes = {
-    movies: PropTypes.array
 };
 
-
-export default Movies;
+export default React.memo(Movies);

@@ -6,19 +6,17 @@ import Movies from "../movies/movies.container";
 import SortBar from "../../components/sort-bar/sort-bar.component";
 import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 
-const Body = () => {
-    return (
-        <ErrorBoundary>
-            <div className="body-container">
-                <div className="sort-filter-toolbar">
-                    <FilterBar />
-                    <SortBar />
-                </div>
-                <div className="break-line" />
-                <Movies />
+const Body = () => (
+    <ErrorBoundary>
+        <div className="body-container">
+            <div className="sort-filter-toolbar">
+                <FilterBar />
+                <SortBar />
             </div>
-        </ErrorBoundary>
-    )
-};
+            <div className="break-line" />
+            <Movies />
+        </div>
+    </ErrorBoundary>
+);
 
 export default Body;

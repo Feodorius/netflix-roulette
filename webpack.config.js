@@ -8,6 +8,7 @@ const config = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, '/dist'),
+        publicPath: '/',
         filename: '[name].[contenthash:8].bundle.js',
         chunkFilename: '[name].[contenthash:8].bundle.js'
     },
@@ -19,6 +20,9 @@ const config = {
         splitChunks: {
             chunks: 'all',
         }
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     module: {
         rules: [

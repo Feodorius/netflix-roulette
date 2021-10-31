@@ -3,15 +3,24 @@ import "./header.styles.scss";
 
 import Search from "../../components/search/search.component";
 import MovieDetails from "../../components/movie-details/movie-details.component";
-import { Context } from "../../App";
+import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 
 const Header = () => {
-    const context = React.useContext(Context);
+    let { path } = useRouteMatch();
+
     return (
         <>
-            {
-                context.isSearchOpened ? <Search /> : <MovieDetails />
-            }
+            <Switch>
+                <Route path={path} exact>
+                    <Redirect from={path} to="/search" />
+                </Route>
+                <Route path="/search">
+                    <Search />
+                </Route>
+                <Route path="/movie/:id">
+                    <MovieDetails />
+                </Route>             
+            </Switch>
         </>
     )
 };
