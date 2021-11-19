@@ -1,11 +1,20 @@
 {
   "name": "netflix-roulette",
+  "jest": {
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "server"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start:server": "cd ./server && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "concurrently 'npm:start:*'",
     "start:ui": "webpack serve --mode development --open --hot",
     "build:dev": "webpack --env dev --mode development",
@@ -45,11 +54,14 @@
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "@babel/preset-react": "^7.14.5",
+    "@testing-library/react": "^12.1.2",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^6.3.0",
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.3.1",
     "mini-css-extract-plugin": "^2.3.0",
     "node-sass": "^6.0.1",
     "sass-loader": "^12.1.0",

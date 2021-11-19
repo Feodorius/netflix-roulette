@@ -9,9 +9,6 @@ export const validate = values => {
     if (!values.poster_path.includes("https://")) {
         errors.poster_path = "Please provide the correct url"
     }
-    if (!values.poster_path.includes("https://")) {
-        errors.poster_path = "Please provide the correct url"
-    }
     if (!values.poster_path) {
         errors.poster_path = "Please provide the url for the poster"
     }
