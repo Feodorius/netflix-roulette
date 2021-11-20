@@ -7,7 +7,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import FilterBar from '../components/filter-bar/filter-bar.component';
 import Search from "../components/search/search.component";
-import AddButton from "../components/add-button/add-button.component";
 import AddEditDialog from "../components/add-edit-dialog/add-edit-dialog.component";
 
 describe('Should render components properly:', () => {
@@ -20,10 +19,6 @@ describe('Should render components properly:', () => {
     test('render search panel', () => {
         const { asFragment } = render(<Provider store={store}><Router><Search /></Router></Provider>);
         expect(asFragment(<Search />)).toMatchSnapshot();
-    });
-    test('render add button', () => {
-        const { asFragment } = render(<Provider store={store}><Router><AddButton /></Router></Provider>);
-        expect(asFragment(<AddButton />)).toMatchSnapshot();
     });
     test('render Add/Edit Dialog', () => {
         const { asFragment } = render(<Provider store={store}><Router><AddEditDialog /></Router></Provider>);
