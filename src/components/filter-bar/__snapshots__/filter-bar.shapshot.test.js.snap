@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render components properly: render filter bar 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiTabs-root css-1ujnqem-MuiTabs-root"
+  >
+    <div
+      class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+      style="overflow: hidden; margin-bottom: 0px;"
+    >
+      <div
+        class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+        role="tablist"
+      >
+        <button
+          aria-selected="true"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected filter-tab css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          role="tab"
+          tabindex="0"
+          type="button"
+        >
+          all
+        </button>
+        <button
+          aria-selected="false"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary filter-tab css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          documentary
+        </button>
+        <button
+          aria-selected="false"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary filter-tab css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          comedy
+        </button>
+        <button
+          aria-selected="false"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary filter-tab css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          horror
+        </button>
+        <button
+          aria-selected="false"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary filter-tab css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          crime
+        </button>
+      </div>
+      <span
+        class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+        style="left: 0px; width: 0px;"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
