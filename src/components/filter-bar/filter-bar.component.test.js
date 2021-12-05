@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import FilterBar from '../components/filter-bar/filter-bar.component';
+import FilterBar from './filter-bar.component';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import rootReducer from "../store/reducers/rootReducer";
+import rootReducer from "../../store/reducers/rootReducer";
 import { Router } from "react-router-dom";
 import "whatwg-fetch";
-import * as thunks from '../store/thunks';
+import * as thunks from '../../store/thunks';
 import { createMemoryHistory } from "history";
 
 const history = createMemoryHistory({ initialEntries: ['/search'] });

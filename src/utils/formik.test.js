@@ -1,4 +1,4 @@
-import { validate } from "../utils/formik";
+import { validate } from "./formik";
 
 
 describe("utils formik validation test:", () => {
